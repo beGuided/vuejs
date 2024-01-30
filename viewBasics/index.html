@@ -1,0 +1,50 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning view</title>
+    <script src="https://unpkg.com/vue@3.0.2"></script>
+    <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
+<style>
+    .box{
+        padding:100px 0;
+        width:400px;
+        text-align:center;
+        background-color: grey ;
+        margin:20px;
+        display:inline-block;
+    }
+</style>
+</head>
+<body>
+    <h1>Hello, Vue :)</h1>
+    <div id="app">
+        <div v-if="showBooks">
+             <!-- attribute binding -->
+            <!-- <a v-bind:href="url"> link to website</a> -->
+            
+            <!-- <p>{{title}} - {{author}} - {{ age}}</p> -->
+            <!-- <p>{{books[0].title}} - {{author[0].title}} - {{ age[0].title}}</p> -->
+             <ul>
+                <li v-for="book in books" :class="{fav: book.isFav}" @click="toggleFav(book)">
+                   <img :src="book.img" :alt="book.title" >
+                    <h2>{{book.title}}</h2>
+                    <p>{{book.author}}</p>
+                </li>
+            </ul>
+        </div>
+
+        <button v-on:click="toggleShowBooks">
+            <span v-if="showBooks">Hide Books </span>
+            <span v-else>Show Books</span>
+            <!-- <span v-if="showBooks == false">Show Books</span> alternative for else -->
+        </button>
+        <div class="box" v-on:mouseover="handleEvent($event,5)"> pouser over </div>
+        <div class="box" @mouseleave="handleEvent">mouseleave</div>
+        <div class="box" @dblclick="handleEvent">Double Click</div>
+        <div class="box" @mouseover="handleMouseMove"> position - {{x}}-{{y}}</div>
+
+    </div>
+<script src="app.js"></script>
+</body>
+</html>
